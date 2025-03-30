@@ -49,3 +49,32 @@ class VIPCustomer extends Customer //extending the customer class
         return total * 0.10; 
     }
 }
+
+// Task 4: Build a Client Report System
+const salesRep = new SalesRep("Padme");
+
+const customer1 = new Customer("Anakin Skywalker", "askywalkera@gmail.com");
+customer1.addPurchase(1000); 
+
+const customer2 = new VIPCustomer("Obi Wan", "obikenobi@gmail.com" ,"Gold");
+customer2.addPurchase(2000);
+
+salesRep.addClient(customer1);
+salesRep.addClient(customer2);
+
+const allCustomers = [customer1, customer2]; 
+
+const totalRevenue = allCustomers.reduce((total, customer) => total + customer.getTotalSpent(), 0); //calculating total revenue
+console.log(`Total Revenue: $${totalRevenue}`); 
+
+const highestSpender = allCustomers.filter(customer => customer.getTotalSpent() > 500);// Filter customers who spent more than $500
+console.log("Highest Spenders:", highestSpender.map(customer => customer.name));
+
+const customerReport = allCustomers.map(customer => (
+{
+    name: customer.name,
+    totalSpent: customer.getTotalSpent(),
+}));
+console.log("Customer Report:", customerReport); 
+
+
